@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body_class %}input-page{% endblock %}
+{% block content %}
+<div class="py-10">
+    <h1 class="text-3xl font-bold text-center mb-6">Enter Your Data</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="text-center text-{{ 'red' if category == 'error' else 'green' }}-500">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="POST" class="max-w-md mx-auto space-y-4">
+        <input type="number" name="energy" placeholder="Energy Usage (kWh)" step="0.1" min="0" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500" required>
+        <input type="number" name="miles" placeholder="Miles Driven" step="0.1" min="0" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500" required>
+        <input type="number" name="waste" placeholder="Waste (kg)" step="0.1" min="0" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500" required>
+        <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600">Submit</button>
+    </form>
+</div>
+{% endblock %}

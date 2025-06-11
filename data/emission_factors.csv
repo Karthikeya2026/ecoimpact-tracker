@@ -1,0 +1,4 @@
+type,co2_kg
+electricity,0.5
+car,0.2
+waste,0.1

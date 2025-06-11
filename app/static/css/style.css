@@ -1,0 +1,33 @@
+/* Custom styles */
+body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Home, Register, Login background */
+body:has(.home-page),
+body:has(.register-page),
+body:has(.login-page) {
+    background-image: url('../images/home-bg.jpg');
+}
+
+/* Input, Dashboard, Insights background */
+body:has(.input-page),
+body:has(.dashboard-page),
+body:has(.insights-page) {
+    background-image: url('../images/dashboard-bg.jpg');
+}
+
+/* Ensure content is readable over background */
+main {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Existing styles */
+input:focus, button:hover {
+    transition: all 0.3s ease;
+}

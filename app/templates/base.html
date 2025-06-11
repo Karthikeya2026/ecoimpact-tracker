@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoImpact Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body.home-page {
+            background-image: url("{{ url_for('static', filename='images/ecohome.jpg') }}") !important;
+        }
+        body.register-page,
+        body.login-page {
+            background-image: url("{{ url_for('static', filename='images/home-bg.jpg') }}");
+        }
+        body.input-page,
+        body.dashboard-page {
+            background-image: url("{{ url_for('static', filename='images/dashboard-bg.jpg') }}");
+        }
+        body.insights-page {
+            background-image: url("{{ url_for('static', filename='images/insights-bg.jpg') }}");
+        }
+        body {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/ecologo.png') }}">
+
+</head>
+<body class="bg-gray-900 text-white {% block body_class %}{% endblock %}">
+    <nav class="bg-black bg-opacity-50 p-4 fixed w-full z-10">
+        <div class="max-w-7xl mx-auto flex justify-between">
+            <<a href="{{ url_for('main.home') }}" class="flex items-center space-x-2">
+    <img src="{{ url_for('static', filename='images/ecologo.png') }}" alt="Logo" class="h-10 w-auto">
+    <span class="text-xl font-bold">EcoImpact Tracker</span>
+</a>
+
+            <div class="space-x-4">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.input_data') }}" class="hover:text-blue-400">Input</a>
+                    <a href="{{ url_for('main.dashboard') }}" class="hover:text-blue-400">Dashboard</a>
+                    <a href="{{ url_for('main.insights') }}" class="hover:text-blue-400">Insights</a>
+                    <a href="{{ url_for('main.logout') }}" class="hover:text-blue-400">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('main.login') }}" class="hover:text-blue-400">Login</a>
+                    <a href="{{ url_for('main.register') }}" class="hover:text-blue-400">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <main class="pt-20 max-w-7xl mx-auto px-4">
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
